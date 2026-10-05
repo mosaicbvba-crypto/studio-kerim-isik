@@ -1,7 +1,16 @@
 /** @type {import('next').NextConfig} */
+const isPages = process.env.GITHUB_PAGES === "true";
+const basePath = isPages ? "/studio-kerim-isik" : "";
+
 const nextConfig = {
+  output: "export",
+  basePath,
+  env: {
+    NEXT_PUBLIC_BASE_PATH: basePath,
+  },
   images: {
-    formats: ["image/avif", "image/webp"],
+    loader: "custom",
+    loaderFile: "./lib/image-loader.ts",
   },
 };
 
